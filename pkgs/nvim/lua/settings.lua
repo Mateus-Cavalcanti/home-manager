@@ -10,7 +10,7 @@ dofile("/home/mateusc/.config/nixpkgs/pkgs/nvim/lua/nvim-tree.lua")
 
 vim.cmd [[
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-    filetype plugin indent on 
+    filetype plugin indent on
     syntax enable
     "set spelllang=en,pt_br"
     "set spellsuggest=best,9"
@@ -21,7 +21,7 @@ vim.cmd [[
       execute a:command
       call winrestview(w)
     endfunction
-    colorscheme palenight
+    colorscheme catppuccin
     autocmd BufWinEnter NvimTree setlocal nonumber
     highlight IndentBlanklineChar guifg = #393b4d
     au FileType markdown setlocal wrap linebreak spell
@@ -29,18 +29,18 @@ vim.cmd [[
         autocmd!
         autocmd CmdlineLeave : echo ''
     augroup end
-    let g:dashboard_default_executive ='telescope'
-    let g:indentLine_fileTypeExclude = ['dashboard']
-    autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2
-    let g:dashboard_custom_shortcut={
-\ 'last_session'       : 'NaN',
-\ 'find_history'       : 'NaN',
-\ 'find_file'          : 'C-f',
-\ 'new_file'           : 'NaN',
-\ 'change_colorscheme' : 'NaN',
-\ 'find_word'          : 'C-n',
-\ 'book_marks'         : 'NaN',
-\ }
+    "let g:dashboard_default_executive ='telescope'"
+    "-- let g:indentLine_fileTypeExclude = ['dashboard']"
+    "-- autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2"
+    "let g:dashboard_custom_shortcut={"
+"\ 'last_session'       : 'NaN',"
+"\ 'find_history'       : 'NaN',"
+"\ 'find_file'          : 'C-f',"
+"\ 'new_file'           : 'NaN',"
+"\ 'change_colorscheme' : 'NaN',"
+"\ 'find_word'          : 'C-n',"
+"\ 'book_marks'         : 'NaN',"
+"\ }"
 map <silent> k gk
 map <silent> j gj
 imap <silent> <Down> <C-o>gj
@@ -63,7 +63,7 @@ let maplocalleader = " "
 
     set shiftwidth=4
 
-let g:Tex_IgnoredWarnings = 
+let g:Tex_IgnoredWarnings =
     \'Underfull'."\n".
     \'Overfull'."\n".
     \'specifier changed to'."\n".
@@ -203,7 +203,7 @@ require("toggleterm").setup{
     end
   end,
 }
-require('specs').setup{ 
+require('specs').setup{
     show_jumps  = true,
     min_jump = 30,
     popup = {

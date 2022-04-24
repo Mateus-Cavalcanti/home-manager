@@ -124,87 +124,99 @@ let
       sha256 = "GBbpLdsPprxUlpCg9eRD+KvKWPKe7wELxPTN1C2+Xio=";
     };
   };
+  nvim-palenight = pkgs.vimUtils.buildVimPlugin {
+    name = "palenight";
+    src = pkgs.fetchFromGitHub {
+      owner = "mateus-cavalcanti";
+      repo = "nvim-palenight.lua";
+      rev = "d316039df82dd9640f6a4baec655e4cf84334619";
+      sha256 = "9GMu9PRisRCvMGb4wydQzaat+3juYhZXHpqjF44TkQU=";
+    };
+  };
 in
 {
     programs.neovim = {
         vimAlias = true;
         enable = true;
         plugins = with pkgs.vimPlugins; [
-            # File tree
-            nvim-web-devicons 
-            nvim-tree-lua
+          # Package manager
+          packer-nvim
+          # File tree
+          nvim-web-devicons
+          nvim-tree-lua
 
-            # LSP
-            nvim-lspconfig
-            ultisnips
-            lsp_signature-nvim
-            nvim-code-action-menu
+          # LSP
+          nvim-lspconfig
+          # ultisnips
+          lsp_signature-nvim
+          nvim-code-action-menu
+          friendly-snippets
+          luasnip
 
-            # Languages
-            vim-nix
+          # Languages
+          vim-nix
 
-            # Eyecandy 
-            nvim-treesitter
-            bufferline-nvim
-            galaxyline-nvim
-            nvim-colorizer-lua
-            pears-nvim
-            dressing-nvim 
-            TrueZen-nvim
-            goyo-vim
-            nvim-ts-rainbow
+          # Eyecandy
+          nvim-treesitter
+          bufferline-nvim
+          galaxyline-nvim
+          nvim-colorizer-lua
+          pears-nvim
+          # dressing-nvim
+          TrueZen-nvim
+          goyo-vim
+          nvim-ts-rainbow
+          nvim-palenight
+          catppuccin-nvim
 
-            # Docs generator
-            neogen
+          # Docs generator
+          neogen
 
-            # LSP and completion
-            nvim-lspconfig
-            nvim-compe
-            cmp-nvim-lsp
-            vim-vsnip
-            copilot-nvim
+          # LSP and completion
+          nvim-lspconfig
+          nvim-compe
+          cmp-nvim-lsp
+          # vim-vsnip
+          copilot-nvim
 
-            # Latex
-            vimtex
+          # Latex
+          vimtex
 
-            # Telescope
-            telescope-nvim
+          # Telescope
+          telescope-nvim
 
-            # Indent lines
-            indent-blankline-nvim
+          # Indent lines
+          indent-blankline-nvim
 
-            # Spell Checking
-            vim-spell-pt-br
-            spellsitter
-            nvim-cmp
-            cmp-spell
-            nvim-lightbulb
-            project_nvim
+          # Spell Checking
+          vim-spell-pt-br
+          spellsitter
+          nvim-cmp
+          cmp-spell
+          nvim-lightbulb
+          project_nvim
 
-            # Writing utilities
-            todo-comments-nvim
-            neorg
-            venn-nvim
+          # Writing utilities
+          todo-comments-nvim
+          neorg
+          venn-nvim
 
-            # Other utilities
-            nvim-whichkey-setup-lua
-            palenight-vim
-            which-key-nvim
-            nvim-notify
-            firenvim-nvim
-            nvim-comment
-            specs-nvim
-            toggle-term
-            sniprun
-            vimp
-            #toggleterm-nvim
-            nvim-bqf
-            neoformat
-            dashboard-nvim
-            # scratch-nvim
-            diffview-nvim
-            plenary-nvim
-            nvim-hclipboard 
+          # Other utilities
+          nvim-whichkey-setup-lua
+          which-key-nvim
+          nvim-notify
+          firenvim-nvim
+          nvim-comment
+          specs-nvim
+          toggle-term
+          sniprun
+          # vimp
+          nvim-bqf
+          neoformat
+          # dashboard-nvim
+          diffview-nvim
+          plenary-nvim
+          nvim-hclipboard
         ];
         extraConfig = ''
             luafile /home/mateusc/.config/nixpkgs/pkgs/nvim/lua/settings.lua
