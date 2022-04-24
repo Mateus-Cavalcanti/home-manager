@@ -202,33 +202,6 @@ require("toggleterm").setup{
       return vim.o.columns * 0.4
     end
   end,
-  open_mapping = [[<c-\>]],
-  hide_numbers = true, -- hide the number column in toggleterm buffers
-  shade_filetypes = {},
-  shade_terminals = true,
-  shading_factor = '<number>', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
-  start_in_insert = true,
-  insert_mappings = true, -- whether or not the open mapping applies in insert mode
-  terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
-  persist_size = true,
-  direction = 'vertical',
-  close_on_exit = true, -- close the terminal window when the process exits
-  shell = vim.o.shell, -- change the default shell
-  -- This field is only relevant if direction is set to 'float'
-  float_opts = {
-    -- The border key is *almost* the same as 'nvim_open_win'
-    -- see :h nvim_open_win for details on borders however
-    -- the 'curved' border is a custom border type
-    -- not natively supported but implemented in this plugin.
-    border = 'single',
-    width = 100,
-    height = 100,
-    winblend = 3,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    }
-  }
 }
 require('specs').setup{ 
     show_jumps  = true,
@@ -259,7 +232,7 @@ vim.opt.spelllang = { 'en_us', 'pt_br' }
 
 -- Treesitter settings
  require'nvim-treesitter.configs'.setup {
-   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
         enable = true
     },
@@ -269,6 +242,13 @@ vim.opt.spelllang = { 'en_us', 'pt_br' }
         max_file_lines = nil,
     },
 }
+
+-- Strip trailing whitespaces on save
+vim.api.nvim_create_autocmd(
+    "BufWritePre",
+    { pattern = "*", command = "%s/\\s\\+$//e" }
+)
+
 local map = vim.api.nvim_set_keymap
 function map2(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -346,6 +326,29 @@ function append_executable()
     vim.cmd("silent e!")
 end
 
+-- Lazygit terminal
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("Closing terminal")
+  end,
+})
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
 -- Mapping each key to which-key
 wk.register({
     ["<Space>"] = {
@@ -355,7 +358,8 @@ wk.register({
             q = { ":DiffviewClose<CR>", "Close the diff view window" },
             a = { ":TermExec cmd=\"git add %\"<CR>", "Add the current file to the staging area" },
             c = { ":lua commit_shortcut()<CR>", "Commit the current file" },
-            g = { ":TermExec cmd=\"git push -u origin main\"<CR>", "Push the current file to the remote repository" }
+            g = { ":TermExec cmd=\"git push -u origin main\"<CR>", "Push the current file to the remote repository" },
+            l = { ":lua _lazygit_toggle()<CR>", "Toggle the lazygit terminal" },
         },
         s = {
             name = "+shell",
@@ -396,7 +400,40 @@ wk.register({
         q = {":q<CR>", "Quit the current window"},
         n = {":Telescope projects<CR>", "Open the project manager"},
         w = {":w %<CR>", "Save the current file"},
-        r = {":lua append_executable()<CR>", "Append the line that makes a file executable to the file"}
+        r = {":lua append_executable()<CR>", "Append the line that makes a file executable to the file"},
+        a = {
+            name = "*telescope",
+            a = { ":Telescope find_files<CR>", "Find files" },
+            n = { ":Telescope live_grep<CR>", "Live grep" },
+            o = {  ":Telescole old_files<CR>", "Old files" },
+            c = {
+                name = "*commands",
+                c = { ":Telescope commands<CR>", "Commands" },
+                o = { ":Telescope commands_history<CR>", "Old commands used" },
+            },
+            s = { ":Telescope colorscheme<CR>", "Color schemes" },
+            m = { ":Telescope marks<CR>", "Marks" },
+            t = { ":Telescope tresitter<CR>", "Tags" },
+            h = { ":Telescope spellsuggest<CR>", "Spell suggestions" },
+            f = { ":Telescope filetypes<CR>", "Filetypes" },
+            b = { ":Telescope buffers<CR>", "Buffers" },
+        },
+        l = {
+            name = "*lsp",
+            r = { ":Telescope lsp_references<CR>", "References" },
+            i = { ":Telescope lsp_document_symbols<CR>", "Document symbols" },
+            c = {
+                name = "*code_actions",
+                c = { ":Telescope lsp_code_actions<CR>", "Code actions" },
+                r = { ":Telescope lsp_range_code_actions<CR>", "Range code actions" },
+            },
+            w = {
+                name = "*workspace_symbols",
+                w = { ":Telescope lsp_workspace_symbols<CR>", "Workspace symbols" },
+                s = { ":Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace symbols search" },
+            },
+
+        },
     },
     ["<C-m>"] = {":CommentToggle <CR>", "Toggle current line comments"},
     ["<C-o"] = {":NvimTreeToggle <CR>", "Toggle the neovim tree window"},
@@ -404,7 +441,8 @@ wk.register({
     ["<C-f>"] = {":Telescope find_files <CR>", "Find files"},
     ["<C-n>"] = {":Telescope live_grep <CR>", "Live grep"},
     ["<C-l>"] = {":noh <CR>", "Noh"},
-    ["<C-t>"] = {":ToggleTerm size=75 <CR>", "Toggle the terminal size"},
+    ["<C-t>"] = {":ToggleTerm size=75 direction=vertical <CR>", "Toggle the terminal size"},
+    ["<CR>"] = {":CommentToggle<CR>", "Toggle current line comment"}
 })
 
 wk.setup{
