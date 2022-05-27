@@ -23,9 +23,6 @@ in {
       shell = "zsh";
       editor = "vim";
     };
-    keybindings = {
-      "ctrl-shift-z" = "scroll_to_prompt -1";
-    };
     extraConfig = (builtins.readFile ./kitty.conf);
   };
 }

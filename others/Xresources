@@ -50,8 +50,10 @@ color13: #c792ea
 color14: #62adcc
 color15: #ffffff
 
-background:#282838
+background:#292d3e
 foreground:#b6bcdd
 
 background-alt:#1e1e2e
 foreground-alt:#bbc2cf
+background_alt:#1e1e2e
+foreground_alt:#bbc2cf

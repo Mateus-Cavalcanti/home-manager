@@ -1,6 +1,6 @@
 {pkgs, config, ...}:
 
-let 
+let
   actualvolume = pkgs.writeShellScriptBin "actualvolume" ''
     pactl list sinks | grep '^[[:space:]]Volume:' | \
     head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
@@ -41,7 +41,6 @@ let
       echo "0"
     fi
   '';
-
   wtfetch = pkgs.writeShellScriptBin "wtfetch" (builtins.readFile ../bash/wtfetch.sh);
 in
 {
@@ -140,9 +139,17 @@ home.packages =  with pkgs; [
     actual-brightness
     connected
     lazygit
+    gccStdenv
+    inotify-tools
+    thefuck
+    weechat
+    python39Packages.pip
+    wine
+    itch
 
-    # Neovim related somehow
-    xcompmgr
+
+      # Neovim related somehow
+      xcompmgr
     rnix-lsp
     sumneko-lua-language-server
     pyright
@@ -152,11 +159,13 @@ home.packages =  with pkgs; [
     tridactyl-native
     rust-analyzer
     actualvolume
+    extraNodePackages.typescript
     extraNodePackages.typescript-language-server
     gnome.gnome-clocks
     extraNodePackages.vscode-langservers-extracted
     nodePackages.bash-language-server
     rnix-lsp
-
+    extraNodePackages.svelte-language-server
+    extraNodePackages."@emacs-grammarly/unofficial-grammarly-language-server"
   ];
 }

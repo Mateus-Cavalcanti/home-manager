@@ -3,7 +3,7 @@ enable = true,
 }
 require("project_nvim").setup {}
 require('telescope').load_extension('projects')
-require('neogen').setup {}
+-- require('neogen').setup {}
 require("lsp_signature").setup({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
     handler_opts = {
@@ -75,10 +75,13 @@ cmd = { "lua-language-server" }
 }
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.texlab.setup{}
-require'lspconfig'.tsserver.setup{
-    cmd={"typescript-language-server", "--stdio"},
-}
+-- require'lspconfig'.tsserver.setup{
+--     cmd={"typescript-language-server", "--stdio"},
+-- }
 require'lspconfig'.clangd.setup{
     cmd = {"clangd", "--background-index", "--log=verbose", "--clang-tidy", "--header-insertion=iwyu"}
 }
 require'lspconfig'.rnix.setup{}
+require'lspconfig'.html.setup{}
+require'lspconfig'.svelte.setup{}
+require'lspconfig'.grammarly.setup{}

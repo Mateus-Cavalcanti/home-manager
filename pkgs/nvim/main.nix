@@ -75,8 +75,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "github";
       repo = "copilot.vim";
-      rev = "47eb231463d3654de1a205c4e30567fbd006965d";
-      sha256 = "eAAbnXVm/vzt/kVq3vBw91GtfSVlAdYTbOzAZFD49hs=";
+      rev = "4df203c1356b72032df32d7b0b5facb4895139b6e7e";
+      sha256 = "Dd9nTeOPBgft9QTj+CJbvLxCqLMYdvBjjo5cEsYKYqM=";
     };
   };
   firenvim-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -133,6 +133,24 @@ let
       sha256 = "9GMu9PRisRCvMGb4wydQzaat+3juYhZXHpqjF44TkQU=";
     };
   };
+  dirbuf = pkgs.vimUtils.buildVimPlugin {
+    name = "dirbuf";
+    src = pkgs.fetchFromGitHub {
+      owner = "elihunter173";
+      repo = "dirbuf.nvim";
+      rev = "d347a7e21b94162ddfa4323b7d1408e90d8c9502";
+      sha256 = "77y3ncqP+e9NvVIZOPoUAF3Hle0632OqwtTmOXB+Abs=";
+    };
+  };
+  instant-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "instant";
+    src = pkgs.fetchFromGitHub {
+      owner = "jbyuki";
+      repo = "instant.nvim";
+      rev = "c02d72267b12130609b7ad39b76cf7f4a3bc9554";
+      sha256 = "7Pr2Au/oGKp5kMXuLsQY4BK5Wny9L1EBdXtyS5EaZPI=";
+    };
+  };
 in
 {
     programs.neovim = {
@@ -168,9 +186,10 @@ in
           nvim-ts-rainbow
           nvim-palenight
           catppuccin-nvim
+          # nvim-cursorline
 
           # Docs generator
-          neogen
+          # neogen
 
           # LSP and completion
           nvim-lspconfig
@@ -200,9 +219,11 @@ in
           todo-comments-nvim
           neorg
           venn-nvim
+          dirbuf
 
           # Other utilities
           nvim-whichkey-setup-lua
+          instant-nvim
           which-key-nvim
           nvim-notify
           firenvim-nvim
@@ -215,6 +236,7 @@ in
           neoformat
           # dashboard-nvim
           diffview-nvim
+          impatient-nvim
           plenary-nvim
           nvim-hclipboard
         ];

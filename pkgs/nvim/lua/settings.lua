@@ -1,5 +1,6 @@
 --!/usr/bin/env cached-nix-shell
 --! nix-shell -p lua -i "lua" --quiet
+require'impatient'.enable_profile()
 local opt = vim.opt
 local g = vim.g
 vim.opt.termguicolors = true
@@ -10,6 +11,7 @@ dofile("/home/mateusc/.config/nixpkgs/pkgs/nvim/lua/nvim-tree.lua")
 
 vim.cmd [[
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+    autocmd BufNewFile,BufRead *.ho set filetype=markdown
     filetype plugin indent on
     syntax enable
     "set spelllang=en,pt_br"
@@ -21,7 +23,6 @@ vim.cmd [[
       execute a:command
       call winrestview(w)
     endfunction
-    colorscheme catppuccin
     autocmd BufWinEnter NvimTree setlocal nonumber
     highlight IndentBlanklineChar guifg = #393b4d
     au FileType markdown setlocal wrap linebreak spell
@@ -77,14 +78,19 @@ let g:Tex_IgnoreLevel = 8
 
 -- Enable plugins
 require('bufferline').setup{}
+
 -- require('pears').setup()
 require('nvim_comment').setup()
+
 require'sniprun'.setup({
     display = {"VirtualTextOk", "VirtualTextErr"},
 })
 require('colorizer').setup()
+
 require("project_nvim").setup {}
+
 require("todo-comments").setup {}
+
 local cb = require'diffview.config'.diffview_callback
 require'diffview'.setup {
   diff_binaries = false,    -- Show diffs for binaries
@@ -190,6 +196,8 @@ require'diffview'.setup {
 
 vim.o.shell = "zsh"
 
+-- Lazy load theme when buffer is loaded
+vim.api.nvim_create_autocmd("BufEnter", { command = "colorscheme catppuccin" })
 local wk = require("which-key")
 
 -- require("which-key").setup{}
@@ -234,7 +242,8 @@ vim.opt.spelllang = { 'en_us', 'pt_br' }
  require'nvim-treesitter.configs'.setup {
    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     highlight = {
-        enable = true
+        enable = true,
+        disable = { "html" }
     },
     rainbow = {
         enable = true,
@@ -476,7 +485,7 @@ opt.undofile = true
 -- Indentation
 opt.smartindent = true
 opt.tabstop = 4
-opt.shiftwidth = 4
+opt.shiftwidth = 2
 opt.shiftround = true
 opt.expandtab = true
 opt.scrolloff = 3

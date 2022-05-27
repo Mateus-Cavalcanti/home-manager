@@ -223,6 +223,7 @@
       "* * * * *	mateusc	~/.config/nixpkgs/bash/internet.sh ~/var/log/net/connected.log"
       "* * * * *	mateusc	sleep 30; ~/.config/nixpkgs/bash/internet.sh ~/var/log/net/connected.log"
       "@reboot		mateusc	cat /etc/nixos/configuration.nix > ~/.config/nixpkgs/others/configuration.nix"
+      "@hourly		mateusc	notify-send Drink water"
       "*/30 * * * *	root	updatedb"
     ];
   };
@@ -232,7 +233,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

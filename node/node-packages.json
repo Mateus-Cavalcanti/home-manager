@@ -1,5 +1,7 @@
 [
     "typescript",
+    "svelte-language-server",
+    "@emacs-grammarly/unofficial-grammarly-language-server",
     "typescript-language-server",
     "vscode-langservers-extracted"
 ]

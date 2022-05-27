@@ -2,5 +2,5 @@
 
 * Install node packages
 + Edit the ./node/node-packages.json and add your packages
-+ Run nix-shell -p nodePackages.node2nix --command "node2nix -i ./node/node-packages.json -o ./node/node-packages.nix"
++ Run nix-shell -p nodePackages.node2nix --command "node2nix -i ./node-packages.json -o ./node-packages.nix"
 + Add the package to the manager.nix
