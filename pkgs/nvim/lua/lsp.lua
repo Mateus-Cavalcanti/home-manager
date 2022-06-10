@@ -1,3 +1,4 @@
+completeopt=popup
 require('spellsitter').setup{
 enable = true,
 }
@@ -11,6 +12,7 @@ require("lsp_signature").setup({
     }
   })
 -- Setup nvim-cmp.
+
 local cmp = require'cmp'
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -78,10 +80,9 @@ require'lspconfig'.texlab.setup{}
 -- require'lspconfig'.tsserver.setup{
 --     cmd={"typescript-language-server", "--stdio"},
 -- }
-require'lspconfig'.clangd.setup{
-    cmd = {"clangd", "--background-index", "--log=verbose", "--clang-tidy", "--header-insertion=iwyu"}
-}
+require'lspconfig'.clangd.setup{}
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.html.setup{}
 require'lspconfig'.svelte.setup{}
 require'lspconfig'.grammarly.setup{}
+require'lspconfig'.eslint.setup{}

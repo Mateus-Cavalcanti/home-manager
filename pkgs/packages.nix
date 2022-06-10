@@ -5,7 +5,6 @@ let
     pactl list sinks | grep '^[[:space:]]Volume:' | \
     head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
   '';
-  extraNodePackages = import ../node/default.nix {};
   foo = import (fetchTarball "https://github.com/mateus-cavalcanti/playground/archive/master.tar.gz") {};
   mail-password = pkgs.writeShellScriptBin "mail-password" ''
     cat /home/mateusc/Passwords/imap
@@ -44,6 +43,7 @@ let
   wtfetch = pkgs.writeShellScriptBin "wtfetch" (builtins.readFile ../bash/wtfetch.sh);
 in
 {
+
 home.packages =  with pkgs; [
 
     libsForQt5.okular
@@ -146,10 +146,20 @@ home.packages =  with pkgs; [
     python39Packages.pip
     wine
     itch
+    chuck
+    lldb
+    gdb
+    cmake
+    llvm
+    ninja
+    meson
+    # libgccjit
+    # gcc-unwrapped
+    bintools-unwrapped
 
 
-      # Neovim related somehow
-      xcompmgr
+    # Neovim related somehow
+    xcompmgr
     rnix-lsp
     sumneko-lua-language-server
     pyright
@@ -159,13 +169,8 @@ home.packages =  with pkgs; [
     tridactyl-native
     rust-analyzer
     actualvolume
-    extraNodePackages.typescript
-    extraNodePackages.typescript-language-server
     gnome.gnome-clocks
-    extraNodePackages.vscode-langservers-extracted
     nodePackages.bash-language-server
     rnix-lsp
-    extraNodePackages.svelte-language-server
-    extraNodePackages."@emacs-grammarly/unofficial-grammarly-language-server"
   ];
 }

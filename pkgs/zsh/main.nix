@@ -33,6 +33,7 @@
       bindkey -v
       export PATH="$HOME/.local/usr/bin:$PATH"
       export PATH="$HOME/.local/venv/bin:$PATH"
+      export PATH="$HOME/.local/usr/node/bin:$PATH"
       # eval "$(oh-my-posh init zsh --config ~/.poshthemes/zash.omp.json)"
       VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
       VI_MODE_SET_CURSOR=true
@@ -72,8 +73,8 @@
           cp = "cp -riv";
           cat = "bat --paging=never --style=plain";
           fzf = "fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'";
-          # ls = "exa -a --icons";
-          ls="ls --hyperlink=auto --color=auto";
+          ls = "exa -a --icons";
+          # ls="ls --hyperlink=auto --color=auto";
           tree = "exa --tree --icons";
           zshrc = "nvim $NIXOS_CONDIF_DIR/config/zsh/zsh.nix";
           home = "nvim $NIXOS_CONFIG_DIR/home.nix";

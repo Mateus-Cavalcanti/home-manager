@@ -197,7 +197,7 @@ require'diffview'.setup {
 vim.o.shell = "zsh"
 
 -- Lazy load theme when buffer is loaded
-vim.api.nvim_create_autocmd("BufEnter", { command = "colorscheme catppuccin" })
+vim.api.nvim_create_autocmd("BufEnter", { command = "colorscheme palenight" })
 local wk = require("which-key")
 
 -- require("which-key").setup{}
@@ -244,11 +244,6 @@ vim.opt.spelllang = { 'en_us', 'pt_br' }
     highlight = {
         enable = true,
         disable = { "html" }
-    },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
     },
 }
 
@@ -461,6 +456,54 @@ wk.setup{
     },
   },
 }
+
+
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/home/mateusc/.nix-profile/bin/lldb-vscode',
+  name = 'lldb',
+  env = function()
+    local variables = {}
+    for k, v in pairs(vim.fn.environ()) do
+      table.insert(variables, string.format("%s=%s", k, v))
+    end
+    return variables
+  end,
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- 💀
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    -- runInTerminal = false,
+  },
+}
+
+
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
 
 -- Indent line
 vim.opt.list = true

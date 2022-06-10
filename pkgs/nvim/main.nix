@@ -66,8 +66,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "nvim-treesitter";
       repo = "nvim-treesitter";
-      rev = "f735498a645e1a2aca7a0cfdaa2d7f8cec543846";
-      sha256 = "4V1QJCp7J6KIqOzoRsZ49KwNMTu3evakxwLWHUmgvP8=";
+      rev = "a10b603a2cd6d336412e996970e91566492562d2";
+      sha256 = "UzrJhJk4zPk+VNUxma4qwsEGgZynfd4RPEk2mSbqQms=";
     };
     };
   copilot-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -176,6 +176,7 @@ in
 
           # Eyecandy
           nvim-treesitter
+          nvim-treesitter-context
           bufferline-nvim
           galaxyline-nvim
           nvim-colorizer-lua
@@ -183,8 +184,10 @@ in
           # dressing-nvim
           TrueZen-nvim
           goyo-vim
-          nvim-ts-rainbow
-          nvim-palenight
+          vim-visual-multi
+          # nvim-ts-rainbow
+          # nvim-palenight
+          palenight-vim
           catppuccin-nvim
           # nvim-cursorline
 
@@ -197,6 +200,8 @@ in
           cmp-nvim-lsp
           # vim-vsnip
           copilot-nvim
+          nvim-dap
+          feline-nvim
 
           # Latex
           vimtex

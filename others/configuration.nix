@@ -21,10 +21,12 @@
   boot.loader.grub.version = 2;
   boot.loader.grub.useOSProber = true;
   # boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "nixos"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  hardware.opengl.driSupport = true;
+  # For 32 bit applications
+  hardware.opengl.driSupport32Bit = true;
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
   time.timeZone = "America/Sao_Paulo";
@@ -216,6 +218,9 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
 
   services.cron = {
     enable = true;

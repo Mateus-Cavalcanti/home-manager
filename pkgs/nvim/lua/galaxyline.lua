@@ -1,5 +1,5 @@
  -- This file configures galaxyline, a fast and small statusline for nvim.
- -- The configuration was taken from github.com/siduck76/neovim-dotfiles/ 
+ -- The configuration was taken from github.com/siduck76/neovim-dotfiles/
  -- All I did was change the colors. Full credit goes to siduck76
 
 local gl = require("galaxyline")
@@ -155,7 +155,7 @@ gls.right[2] = {
 gls.right[3] = {
     right_LeftRounded = {
         provider = function()
-            return " " 
+            return " "
         end,
         separator = " ",
         separator_highlight = {colors.bg, colors.bg},
