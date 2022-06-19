@@ -6,8 +6,9 @@ in {
   programs.kitty = {
     enable = true;
     font= {
-      name = "Fira Code";
+      name = "Fira Code Bold";
       size = 6;
+
     };
     settings = {
       disable_ligatures = "never";

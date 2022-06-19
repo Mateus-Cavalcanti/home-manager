@@ -153,100 +153,100 @@ let
   };
 in
 {
-    programs.neovim = {
-        vimAlias = true;
-        enable = true;
-        plugins = with pkgs.vimPlugins; [
-          # Package manager
-          packer-nvim
-          # File tree
-          nvim-web-devicons
-          nvim-tree-lua
-
-          # LSP
-          nvim-lspconfig
-          # ultisnips
-          lsp_signature-nvim
-          nvim-code-action-menu
-          friendly-snippets
-          luasnip
-
-          # Languages
-          vim-nix
-
-          # Eyecandy
-          nvim-treesitter
-          nvim-treesitter-context
-          bufferline-nvim
-          galaxyline-nvim
-          nvim-colorizer-lua
-          pears-nvim
-          # dressing-nvim
-          TrueZen-nvim
-          goyo-vim
-          vim-visual-multi
-          # nvim-ts-rainbow
-          # nvim-palenight
-          palenight-vim
-          catppuccin-nvim
-          # nvim-cursorline
-
-          # Docs generator
-          # neogen
-
-          # LSP and completion
-          nvim-lspconfig
-          nvim-compe
-          cmp-nvim-lsp
-          # vim-vsnip
-          copilot-nvim
-          nvim-dap
-          feline-nvim
-
-          # Latex
-          vimtex
-
-          # Telescope
-          telescope-nvim
-
-          # Indent lines
-          indent-blankline-nvim
-
-          # Spell Checking
-          vim-spell-pt-br
-          spellsitter
-          nvim-cmp
-          cmp-spell
-          nvim-lightbulb
-          project_nvim
-
-          # Writing utilities
-          todo-comments-nvim
-          neorg
-          venn-nvim
-          dirbuf
-
-          # Other utilities
-          nvim-whichkey-setup-lua
-          instant-nvim
-          which-key-nvim
-          nvim-notify
-          firenvim-nvim
-          nvim-comment
-          specs-nvim
-          toggle-term
-          sniprun
-          # vimp
-          nvim-bqf
-          neoformat
-          # dashboard-nvim
-          diffview-nvim
-          impatient-nvim
-          plenary-nvim
-          nvim-hclipboard
-        ];
-        extraConfig = ''
-            luafile /home/mateusc/.config/nixpkgs/pkgs/nvim/lua/settings.lua
-        '';
-    };
+    # programs.neovim = {
+        # vimAlias = true;
+        # enable = true;
+        # plugins = with pkgs.vimPlugins; [
+        #   # Package manager
+        #   packer-nvim
+        #   # File tree
+        #   nvim-web-devicons
+        #   nvim-tree-lua
+        #
+        #   # LSP
+        #   nvim-lspconfig
+        #   # ultisnips
+        #   lsp_signature-nvim
+        #   nvim-code-action-menu
+        #   friendly-snippets
+        #   luasnip
+        #
+        #   # Languages
+        #   vim-nix
+        #
+        #   # Eyecandy
+        #   nvim-treesitter
+        #   nvim-treesitter-context
+        #   bufferline-nvim
+        #   galaxyline-nvim
+        #   nvim-colorizer-lua
+        #   pears-nvim
+        #   # dressing-nvim
+        #   TrueZen-nvim
+        #   goyo-vim
+        #   vim-visual-multi
+        #   # nvim-ts-rainbow
+        #   # nvim-palenight
+        #   palenight-vim
+        #   catppuccin-nvim
+        #   # nvim-cursorline
+        #
+        #   # Docs generator
+        #   # neogen
+        #
+        #   # LSP and completion
+        #   nvim-lspconfig
+        #   nvim-compe
+        #   cmp-nvim-lsp
+        #   # vim-vsnip
+        #   copilot-nvim
+        #   nvim-dap
+        #   feline-nvim
+        #
+        #   # Latex
+        #   vimtex
+        #
+        #   # Telescope
+        #   telescope-nvim
+        #
+        #   # Indent lines
+        #   indent-blankline-nvim
+        #
+        #   # Spell Checking
+        #   vim-spell-pt-br
+        #   spellsitter
+        #   nvim-cmp
+        #   cmp-spell
+        #   nvim-lightbulb
+        #   project_nvim
+        #
+        #   # Writing utilities
+        #   todo-comments-nvim
+        #   neorg
+        #   venn-nvim
+        #   dirbuf
+        #
+        #   # Other utilities
+        #   nvim-whichkey-setup-lua
+        #   instant-nvim
+        #   which-key-nvim
+        #   nvim-notify
+        #   firenvim-nvim
+        #   nvim-comment
+        #   specs-nvim
+        #   toggle-term
+        #   sniprun
+        #   # vimp
+        #   nvim-bqf
+        #   neoformat
+        #   # dashboard-nvim
+        #   diffview-nvim
+        #   impatient-nvim
+        #   plenary-nvim
+        #   nvim-hclipboard
+        # ];
+        # extraConfig = ''
+        #     luafile /home/mateusc/.config/nixpkgs/pkgs/nvim/lua/settings.lua
+        # '';
+    # };
 }

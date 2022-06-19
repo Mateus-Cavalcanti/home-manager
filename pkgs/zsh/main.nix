@@ -34,6 +34,7 @@
       export PATH="$HOME/.local/usr/bin:$PATH"
       export PATH="$HOME/.local/venv/bin:$PATH"
       export PATH="$HOME/.local/usr/node/bin:$PATH"
+      export PATH="$HOME/.cargo/bin:$PATH"
       # eval "$(oh-my-posh init zsh --config ~/.poshthemes/zash.omp.json)"
       VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
       VI_MODE_SET_CURSOR=true
@@ -44,6 +45,7 @@
       autoload znt-history-widget
       zle -N znt-history-widget
       bindkey "^R" znt-history-widget
+
       # zle-line-init() { zle -K vicmd; }
       # zle -N zle-line-init
 
@@ -59,7 +61,7 @@
       oh-my-zsh = {
         enable = true;
         plugins = ["colored-man-pages" "command-not-found" "common-aliases" "zsh-interactive-cd" "zsh-navigation-tools" "react-native" "pip" "node" "git" "gh" "github" "vi-mode" "python" "man" "fzf" "thefuck"];
-        # theme="robbyrussell";
+        theme="mh";
       };
 
       # Set some aliases
@@ -84,6 +86,7 @@
           nd = "nix develop -c $SHELL";
           editPackages = "nvim $HOME/.config/nixpkgs/pkgs/packages.nix";
           png = "kitty +kitten icat";
+	  vim = "nvim";
       };
 
     #   # Source all plugins, nix-style

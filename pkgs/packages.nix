@@ -47,40 +47,24 @@ in
 home.packages =  with pkgs; [
 
     libsForQt5.okular
-    gnome.seahorse
-    gnome.gedit
     gnome.nautilus
-    gnome.gnome-boxes
     cached-nix-shell
     betterdiscordctl
     betterlockscreen
     texlive.combined.scheme-full
     latexrun
-    rustup
     teams
     neofetch
-    gcalcli
-    docker-compose
-    with-shell
     simplescreenrecorder
     mail-password
     encrypte-sha256
     organize-files
     python39
-    multimarkdown
     unzip
     sc-im
     wtfetch
     fzf
     abiword
-    ruby
-    nuclear
-    onlyoffice-bin
-    krita
-    gimp
-    mail-password
-    keepassxc
-    foo
     font-manager
     # mariadb
     palenight-theme
@@ -89,18 +73,15 @@ home.packages =  with pkgs; [
     img2pdf
     discord
     xclip
-    gcc
+    /* gcc */
     gdrive
     libnotify
     bat
     bleachbit
-    jq
     dmenu
-    drawing
     tor-browser-bundle-bin
     gh
     fira-code
-    losslesscut-bin
     nodejs
     php
     ripgrep
@@ -113,8 +94,6 @@ home.packages =  with pkgs; [
     (nerdfonts.override { fonts = [ "Iosevka" "FiraCode"]; })
     poppler_utils
     mpv
-    atool
-    lynx
     fltk
     mediainfo
     ffmpegthumbnailer
@@ -123,7 +102,6 @@ home.packages =  with pkgs; [
     google-chrome
     htop
     lm_sensors
-    kdenlive
     cpu-usage
     ram-usage
     disk-usage
@@ -132,20 +110,15 @@ home.packages =  with pkgs; [
     clang-tools
     killall
     xdotool
-    ngrok
     xclip
-    grapejuice
     nix-prefetch-github
     actual-brightness
     connected
-    lazygit
     gccStdenv
     inotify-tools
     thefuck
-    weechat
     python39Packages.pip
-    wine
-    itch
+    wine64
     chuck
     lldb
     gdb
@@ -155,22 +128,26 @@ home.packages =  with pkgs; [
     meson
     # libgccjit
     # gcc-unwrapped
-    bintools-unwrapped
-
+    # bintools-unwrapped
+    xcompmgr
+    lfs
+    luajitPackages.luarocks
+    usbutils
+    libusbgx
+    gusb
+    libusb1
+    libusb1
+    tdesktop
+    heroku
+    php81Packages.composer
+    jq
+    conan
+    nlohmann_json
+    grapejuice
+    rustup
 
     # Neovim related somehow
-    xcompmgr
-    rnix-lsp
-    sumneko-lua-language-server
-    pyright
-    texlab
-    deno
-    lolcat
-    tridactyl-native
-    rust-analyzer
+    neovide
     actualvolume
-    gnome.gnome-clocks
-    nodePackages.bash-language-server
-    rnix-lsp
   ];
 }

@@ -40,6 +40,8 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "mateusc" ];
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
   # console = {
@@ -170,13 +172,13 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mateusc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "adbusers" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "libvirtd" "docker" "adbusers" ]; # Enable ‘sudo’ for the user.
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {
   #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+  #   extraGroups = [ "libvirtd" "wheel" ]; # Enable ‘sudo’ for the user.
   # };
 
   # Enable doas instead of sudo
@@ -203,7 +205,12 @@
     xorg.xbacklight
     testdisk
     kitty
+    neovim
     alacritty # a decent terminal
+    libusb-compat-0_1
+    libusb1
+    libusb
+    virt-manager
   ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -222,6 +229,11 @@
   services.blueman.enable = true;
   boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
 
+  services.samba = {
+    enable = true;
+  };
+
+
   services.cron = {
     enable = true;
     systemCronJobs = [
@@ -235,6 +247,10 @@
   services.openssh.enable = true;
   system.copySystemConfiguration = true;
   # List services that you want to enable:
+
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
